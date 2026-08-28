@@ -1,7 +1,13 @@
 #!/usr/bin/python3
 """
-    """
+Determines if all the boxes can be opened.
+Returns True if all boxes can be opened, False otherwise.
+"""
 def canUnlockAll(boxes):
+    """
+    Determines if all the boxes can be opened.
+    Returns True if all boxes can be opened, False otherwise. 
+    """
     result = []
     for i in range(len(boxes)):
         result.append(False)
