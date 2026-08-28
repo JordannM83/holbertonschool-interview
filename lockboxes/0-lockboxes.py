@@ -8,7 +8,7 @@ Returns True if all boxes can be opened, False otherwise.
 def canUnlockAll(boxes):
     """
     Determines if all the boxes can be opened.
-    Returns True if all boxes can be opened, False otherwise. 
+    Returns True if all boxes can be opened, False otherwise.
     """
     if not boxes:
         return True
