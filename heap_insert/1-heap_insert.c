@@ -45,46 +45,26 @@ static heap_t *insertion_parent(heap_t *root, size_t index)
 }
 
 /**
- * bubble_up - Restores max-heap ordering by rotating a node upward.
- * @root: Double pointer to the heap root.
- * @node: Node to move upward.
+ * bubble_up - Restores max-heap ordering by moving a value upward.
+ * @node: Node containing the value to move upward.
  *
- * Return: Nothing.
+ * Return: Node containing the inserted value.
  */
-static void bubble_up(heap_t **root, heap_t *node)
+static heap_t *bubble_up(heap_t *node)
 {
 	heap_t *parent;
-	heap_t *grandparent;
+	int value;
 
 	while (node->parent != NULL && node->n > node->parent->n)
 	{
 		parent = node->parent;
-		grandparent = parent->parent;
-
-		if (parent->left == node)
-		{
-			parent->left = node->right;
-			if (node->right != NULL)
-				node->right->parent = parent;
-			node->right = parent;
-		}
-		else
-		{
-			parent->right = node->left;
-			if (node->left != NULL)
-				node->left->parent = parent;
-			node->left = parent;
-		}
-
-		parent->parent = node;
-		node->parent = grandparent;
-		if (grandparent == NULL)
-			*root = node;
-		else if (grandparent->left == parent)
-			grandparent->left = node;
-		else
-			grandparent->right = node;
+		value = node->n;
+		node->n = parent->n;
+		parent->n = value;
+		node = parent;
 	}
+
+	return (node);
 }
 
 /**
@@ -121,6 +101,5 @@ heap_t *heap_insert(heap_t **root, int value)
 	else
 		parent->left = node;
 
-	bubble_up(root, node);
-	return (node);
+	return (bubble_up(node));
 }
