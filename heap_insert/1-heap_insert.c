@@ -29,10 +29,10 @@ static heap_t *insertion_parent(heap_t *root, size_t index)
 	mask = 1;
 	while ((mask << 1) <= index)
 		mask <<= 1;
-	mask >>= 2;
+	mask >>= 1;
 	parent = root;
 
-	while (mask != 0)
+	while (mask > 1)
 	{
 		if (index & mask)
 			parent = parent->right;
